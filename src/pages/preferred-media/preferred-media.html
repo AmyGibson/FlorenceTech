@@ -1,0 +1,122 @@
+<!--
+  Generated template for the PreferredMediaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Preferred media</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="addMedia()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="radio !== undefined && radio.length != 0 ">
+    <h3>Radio </h3> 
+    <ion-list>
+        <ion-item *ngFor="let item of radio" text-wrap>
+            <button ion-button outline style="float:right; vertical-align: top" 
+                (click)="openEditingModal(item.MediaID, item.Type)">Edit</button>
+                <button ion-button outline style="float:right; vertical-align: top" 
+                (click)="presentConfirm(item.MediaID, item.Type)">remove</button>
+            <p>{{item.Details}}</p>
+        </ion-item>
+    </ion-list>
+    <hr />
+  </div>
+  
+  <div *ngIf="tv !== undefined && tv.length != 0">
+    <h3>TV</h3>     
+    <ion-list>
+        <ion-item *ngFor="let item of tv" text-wrap>
+            <button ion-button outline style="float:right; vertical-align: top" 
+                (click)="openEditingModal(item.MediaID, item.Type)">Edit</button>
+                <button ion-button outline style="float:right; vertical-align: top" 
+                (click)="presentConfirm(item.MediaID, item.Type)">remove</button>
+            <p>{{item.Details}}</p>
+        </ion-item>
+    </ion-list>
+    <hr />
+  </div>
+
+  <div *ngIf="books !== undefined && books.length != 0">
+    <h3>Books</h3>     
+    <ion-list>
+      <ion-item *ngFor="let item of books" text-wrap>
+        <button ion-button outline style="float:right; vertical-align: top" 
+        (click)="openEditingModal(item.MediaID, item.Type)">Edit</button>
+        <button ion-button outline style="float:right; vertical-align: top" 
+        (click)="presentConfirm(item.MediaID, item.Type)">remove</button>
+          <p>{{item.Details}}</p>
+        </ion-item>
+    </ion-list>
+    <hr />
+  </div>
+  <div *ngIf="movies !== undefined && movies.length != 0">
+    <h3>Movies</h3>     
+    <ion-list>
+      <ion-item *ngFor="let item of movies" text-wrap>
+        <button ion-button outline style="float:right; vertical-align: top" 
+          (click)="openEditingModal(item.MediaID, item.Type)">Edit</button>
+        <button ion-button outline style="float:right; vertical-align: top" 
+          (click)="presentConfirm(item.MediaID, item.Type)">remove</button>
+        <p>{{item.Details}}</p>
+        </ion-item>
+    </ion-list>
+    <hr />
+  </div>
+  
+  <div *ngIf="music !== undefined && music.length != 0">
+      <button ion-button outline style="float:right" (click)="authWithSpotify()" 
+      *ngIf="!spotifyLoggedIn">Login to Spotify</button>
+      <!--<button ion-button outline style="float:right" (click)="logout()" 
+      >Log out</button>-->
+      <h3>Music</h3> 
+      
+      <ion-list>
+        <button ion-item *ngFor="let item of playlists" (click)="openPlaylist(item)">
+          <ion-avatar item-start *ngIf="item.images.length > 0">
+            <img [src]="item.images[0].url">
+          </ion-avatar>
+          {{ item.name }}
+          <p>Tracks: {{ item.tracks.total }}</p>
+        </button>
+      </ion-list>
+
+      <ion-list>
+        <ion-item *ngFor="let item of music" text-wrap>
+          <button ion-button outline style="float:right; vertical-align: top" 
+          (click)="openEditingModal(item.MediaID, item.Type)">Edit</button>
+          <button ion-button outline style="float:right; vertical-align: top" 
+          (click)="presentConfirm(item.MediaID, item.Type)">remove</button>
+            <p>{{item.Details}}</p>
+          </ion-item>
+      </ion-list>
+      <hr />
+    </div>  
+    
+  <div *ngIf="others !== undefined && others.length != 0">
+    <h3>Others</h3>         
+    <ion-list>
+      <ion-item *ngFor="let item of music" text-wrap>
+        <button ion-button outline style="float:right; vertical-align: top" 
+        (click)="openEditingModal(item.MediaID, item.Type)">Edit</button>
+        <button ion-button outline style="float:right; vertical-align: top" 
+        (click)="presentConfirm(item.MediaID, item.Type)">remove</button>
+      <p>{{item.Details}}</p>
+      </ion-item>
+    </ion-list>
+    <hr />
+  </div>
+</ion-content>

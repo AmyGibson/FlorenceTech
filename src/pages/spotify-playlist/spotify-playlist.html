@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="playlistInfo">{{ playlistInfo.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content>
+ 
+  <ion-list>
+    <ion-card *ngFor="let item of tracks">
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="item.track.album.images[0].url">
+        </ion-avatar>
+        <h2>{{ item.track.name }}</h2>
+        <p>{{ item.track.artists[0].name}}</p>
+      </ion-item>
+ 
+      <ion-row>
+       <!-- <ion-col>
+          <button ion-button icon-left (click)="play(item)" clear small>
+            <ion-icon name="play"></ion-icon>
+            Play (for premium user)
+          </button>
+        </ion-col>
+        <ion-col *ngIf="playing && !paused">
+          <button ion-button icon-left (click)="pause()" clear small>
+            <ion-icon name="close"></ion-icon>
+            Pause
+          </button>
+        </ion-col>
+        <ion-col *ngIf="paused">
+          <button ion-button icon-left (click)="resume()" clear small>
+            <ion-icon name="open"></ion-icon>
+            Resume
+          </button>
+        </ion-col>-->
+        <!--<ion-col>
+          <button ion-button icon-left (click)="seekTo()" clear small>
+            <ion-icon name="open"></ion-icon>
+            Seek To
+          </button>
+        </ion-col>-->
+        <ion-col>
+          <button ion-button icon-left (click)="open(item)" clear small>
+            <ion-icon name="open"></ion-icon>
+            Spotify
+          </button>
+        </ion-col>
+      </ion-row>
+ 
+    </ion-card>
+  </ion-list>
+ 
+</ion-content>

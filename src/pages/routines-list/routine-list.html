@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Routines and rhythms</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+<button ion-item (click)="generalRoutineTapped($event)">General Routines</button>
+<button ion-item (click)="specificRoutineTapped($event)">Appointments</button>
+<!--    
+<button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+    
+    {{item.title}}
+    <div class="item-note" item-end>
+        {{item.note}}
+    </div>
+</button>-->
+</ion-list>
+<!--
+<div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+</div>-->
+</ion-content>

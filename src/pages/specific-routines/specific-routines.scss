@@ -1,0 +1,35 @@
+page-specific-routines {
+    .calBody{
+        padding-left:100px;
+        padding-right:100px;
+    }
+    
+    .monthTitle{
+        font-size: 18px;
+        font-weight: bold;
+        padding:30px;
+        position: relative;
+        top:5px;
+    }
+    .monthview-primary-with-event{
+        background-color: '#333399'  !important;
+        //color: black;
+    }
+    .monthview-eventdetail-timecolumn{
+        color:grey !important;
+       // margin-top:5px !important;
+
+    }
+    .event-detail{
+        color:grey !important;
+    }
+    .eventText{
+        position: relative;
+        top:5px;
+    }
+
+    .no-events-label{
+        color:grey !important;
+    }
+   
+}

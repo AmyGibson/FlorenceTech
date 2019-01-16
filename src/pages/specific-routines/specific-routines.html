@@ -1,0 +1,58 @@
+<!--
+  Generated template for the SpecificRoutinesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Appointments and meet ups</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+ 
+  <div class="calBody">
+      
+        <button outline ion-button (click)="previousMonth()"><</button>
+        <span class="monthTitle">{{ viewTitle }}</span>
+        <button outline ion-button (click)="nextMonth()">></button>
+        <button outline ion-button (click)="addEvent()" style="float:right">Add event</button>
+     
+        
+    <ng-template #template  let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+            <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
+                <ion-item *ngFor="let event of selectedDate?.events" >
+                  <span class="eventText">
+                        <span *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.startTime|date: 'HH:mm'}}
+                            -
+                            {{event.endTime|date: 'HH:mm'}}
+                        </span>
+                    <span *ngIf="event.allDay" class="monthview-eventdetail-timecolumn">All day</span>
+                    <span class="event-detail">  |  {{event.title}}</span>
+                  </span>
+                    <button outline ion-button (click)="editEvent(event.eventID)" style="float:right">Edit event</button>
+                    <button outline ion-button (click)="removeEvent(event.eventID)" style="float:right">Remove event</button>
+                </ion-item>
+                <ion-item *ngIf="selectedDate?.events.length==0">
+                    <div class="no-events-label">{{noEventsLabel}}</div>
+                </ion-item>
+            </ion-list>   
+        </ng-template>
+  <calendar  
+  [monthviewEventDetailTemplate]="template"
+    [eventSource]="eventSource"
+        [calendarMode]="calendar.mode"
+        [currentDate]="calendar.currentDate"
+        (onEventSelected)="onEventSelected($event)"
+        (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onTimeSelected($event)"
+        step="30"
+        class="calendar">
+      </calendar>
+      </div>
+  
+</ion-content>
