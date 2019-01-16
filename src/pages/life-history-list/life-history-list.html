@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Life History</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <button ion-item (click)="backgroundTapped($event)">Background</button>
+  <button ion-item (click)="familyTapped($event)">Family</button>
+  <button ion-item (click)="rolesTapped($event)">Meaningful roles</button>
+  <button ion-item (click)="impPeopleTapped($event)">Important people</button>
+</ion-list>
+</ion-content>

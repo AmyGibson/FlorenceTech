@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Very rough prototype</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <p>
+    Florence splash screen
+  </p>
+  <button ion-button secondary menuToggle>Toggle Menu</button>
+
+  <div *ngIf="flickrLoggedIn == false">
+    <button ion-button outline (click)="flickrAuthenticate()">Log in to Flickr</button>
+  </div>
+</ion-content>

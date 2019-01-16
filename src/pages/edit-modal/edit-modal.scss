@@ -1,0 +1,19 @@
+page-edit-modal {
+    .image-container {
+        min-height: 200px;
+        background-size: cover;
+        background-position: center; 
+    }
+
+    .profile-container {
+        //min-height: 100px;
+        height: 150px;
+        width: 150px;
+        float:left;
+        margin-right:15px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: top center; 
+    }
+
+}

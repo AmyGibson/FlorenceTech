@@ -1,0 +1,138 @@
+<!--
+  Generated template for the EditModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <ion-buttons start>
+          <button ion-button (click)="dismiss()">
+              <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-buttons>
+    <ion-title>Edit entry</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+   
+<div *ngIf="type == 'profile'">
+
+    <ion-item>
+      <ion-label color="primary" stacked>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="details.Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Preferred Name</ion-label>
+      <ion-input type="text" [(ngModel)]="details.PreferredName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Date of Birth</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY" [(ngModel)]="details.DOB"></ion-datetime>
+      </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Emergency Contact</ion-label>
+      <ion-input type="tel" [(ngModel)]="details.EmergencyNumber"></ion-input>
+    </ion-item>
+    <ion-item>
+     
+          <div class="profile-container" [style.background-image]="'url('+tempProfile+')'"></div>
+        <button ion-button outline (click)="loadAllImgs()">Change</button>
+     
+
+      <div *ngIf="imagesToAdd != null">
+          <ion-list radio-group>
+        <ion-grid item-content>
+          <ion-row>
+            <ion-col col-4 *ngFor="let ph of imagesToAdd; let i = index"> 
+                <div class="image-container" [style.background-image]="'url('+ph+')'"></div><br />
+                <ion-radio value="{{i}}" (click)="changeProfile(i)"></ion-radio>
+            <!--<ion-checkbox [(ngModel)]="photoSelected[i]" [ngModelOptions]="{standalone: true}"></ion-checkbox>-->
+          </ion-col>
+          </ion-row>
+        </ion-grid>
+        </ion-list>
+      </div>
+    </ion-item>
+    <br />
+  
+</div>
+
+<div *ngIf="type == 'background'">
+
+    <ion-item>
+      <ion-label color="primary" stacked>Event</ion-label>
+      <ion-textarea type="text" [(ngModel)]="details.Event"></ion-textarea>      
+    </ion-item>
+</div>
+<div *ngIf="type == 'roles'">
+
+  <ion-item>
+    <ion-label color="primary" stacked>Role</ion-label>
+    <ion-textarea type="text" [(ngModel)]="details.Role"></ion-textarea>      
+  </ion-item>
+</div>
+
+<!--family input fields-->
+<div *ngIf="type == 'family' || type == 'impPeople'">
+
+    <ion-item>
+      <ion-label color="primary" stacked>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="details.Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Relationship</ion-label>
+      <ion-input type="text" [(ngModel)]="details.Relationship"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary" stacked>Comment</ion-label>
+        <ion-textarea type="text" [(ngModel)]="details.Comment"></ion-textarea>
+      </ion-item>
+  </div> 
+
+  
+
+  <!--share images fields, profile is excluded because it can only select one image-->
+  <div *ngIf="type != 'profile'">
+    
+    <ion-item *ngIf="photoPaths != null">
+      <ion-grid item-content>
+        <ion-row>
+          <ion-col col-4 *ngFor="let ph of photoPaths; let i = index"> 
+            <div class="image-container" [style.background-image]="'url('+ph+')'"></div><br />
+            <button ion-button outline (click)="removePhoto(i)">Remove</button>
+          </ion-col>                  
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+       
+    
+
+   
+    <br />
+    <ion-item>
+      <div *ngIf="imagesToAdd == null">
+        <button ion-button outline (click)="loadAllImgs()">Add image</button>
+      </div>
+      <div *ngIf="imagesToAdd != null">
+        <ion-grid item-content>
+          <ion-row>
+            <ion-col col-4 *ngFor="let ph of imagesToAdd; let i = index"> 
+                <div class="image-container" [style.background-image]="'url('+ph+')'"></div><br />
+            <ion-checkbox [(ngModel)]="photoSelected[i]" [ngModelOptions]="{standalone: true}">Add</ion-checkbox></ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-item>
+  </div>
+  
+  <!--share buttons-->
+  <br />
+  <button ion-button color="danger" full (click)="update(type)">Update</button>
+  <button ion-button full (click)="cancel()">Cancel</button>
+</ion-content>

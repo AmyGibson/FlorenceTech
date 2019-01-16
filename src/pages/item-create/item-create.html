@@ -1,0 +1,156 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-buttons start>
+            <button ion-button (click)="cancel()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+          </ion-buttons>
+      <ion-title>Add item</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content>
+
+  <div *ngIf="type == 'background' || type == 'roles'">
+    <form *ngIf="form" [formGroup]="form" >      
+      <ion-list>
+        <ion-item>
+          <ion-textarea *ngIf="type=='background'" rows="4" type="text" placeholder="Life event details" formControlName="lifeEvent"></ion-textarea>
+          <ion-textarea *ngIf="type=='roles'" rows="4" type="text" placeholder="Role details" formControlName="roleDetails"></ion-textarea>
+        </ion-item>       
+        <ion-item>
+          <div *ngIf="imagesToAdd == null">
+            <button ion-button outline (click)="loadAllImgs()">Add image</button>
+          </div>
+          <div *ngIf="imagesToAdd != null">
+              <ion-grid item-content>
+                <ion-row>
+                  <ion-col col-4 *ngFor="let ph of imagesToAdd; let i = index"> 
+                      <div class="image-container" [style.background-image]="'url('+ph+')'"></div>
+                    <br />
+                    <ion-checkbox [(ngModel)]="photoSelected[i]" [ngModelOptions]="{standalone: true}"></ion-checkbox></ion-col>
+                  
+                </ion-row>
+              </ion-grid>
+          </div>
+        </ion-item>
+      </ion-list>
+    </form>
+    <br />
+    <button *ngIf="type=='background'" ion-button color="danger" block (click)="addItem(type)" [disabled]="!isReadyToSave">
+      Add life event</button>
+      <button *ngIf="type=='roles'" ion-button color="danger" block (click)="addItem(type)" [disabled]="!isReadyToSave">
+        Add meaningful role</button>
+  </div>
+
+  <div *ngIf="type == 'family' || type == 'impPeople'">
+      <form *ngIf="form" [formGroup]="form" >      
+        <ion-list>
+          <ion-item>
+            <ion-label color="primary" stacked>Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+          </ion-item> 
+          <ion-item>
+            <ion-label color="primary" stacked>Relationship</ion-label>
+            <ion-input type="text" formControlName="relationship"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary" stacked>Comment</ion-label>
+            <ion-textarea rows="4" type="text" formControlName="comment"></ion-textarea>
+          </ion-item> 
+          <ion-item>
+            <div *ngIf="imagesToAdd == null">
+              <button ion-button outline (click)="loadAllImgs()">Add image</button>
+            </div>
+            <div *ngIf="imagesToAdd != null">
+                <ion-grid item-content>
+                  <ion-row>
+                    <ion-col col-4 *ngFor="let ph of imagesToAdd; let i = index"> 
+                        <div class="image-container" [style.background-image]="'url('+ph+')'"></div>
+                      <br />
+                      <ion-checkbox [(ngModel)]="photoSelected[i]" [ngModelOptions]="{standalone: true}"></ion-checkbox></ion-col>
+                    
+                  </ion-row>
+                </ion-grid>
+            </div>
+          </ion-item>
+        </ion-list>
+      </form>
+      <br />
+      <button ion-button color="danger" block (click)="addItem(type)" [disabled]="!isReadyToSave">
+        <span *ngIf="type == 'family'">Add family member</span>
+        <span *ngIf="type == 'impPeople'">Add important people</span>
+      </button>
+    </div>
+
+    <div *ngIf="type == 'generalRoutine'">
+        <form *ngIf="form" [formGroup]="form" >      
+          <ion-list>
+            <ion-item>
+              <ion-label color="primary" stacked>{{routineType}}</ion-label>
+              <ion-textarea rows="4" type="text" formControlName="routineDetails"></ion-textarea>
+            </ion-item>             
+          </ion-list>
+        </form>
+        <br />
+        <button ion-button color="danger" block (click)="addItem(type)" [disabled]="!isReadyToSave">
+          Add {{routineType}} routine</button>
+      </div>
+    
+      <div *ngIf="type == 'environment' || type == 'otherActivities' || type =='starters'
+      || type =='specialInterests' || type =='avoid' || type =='general' || type =='worries'
+      || type == 'medConditions' || type == 'specialists'">
+          <form *ngIf="form" [formGroup]="form" >      
+            <ion-list>
+              <ion-item>
+                <ion-label color="primary" stacked>Details</ion-label>
+                <ion-textarea rows="4" type="text" formControlName="entryDetails"></ion-textarea>
+              </ion-item>             
+            </ion-list>
+          </form>
+          <br />
+          <button ion-button color="danger" block (click)="addItem(type)" [disabled]="!isReadyToSave">
+            <span *ngIf="type == 'environment'">Add environment advice</span>
+            <span *ngIf="type == 'otherActivities'">Add activitiy</span>
+            <span *ngIf="type == 'starters' || type =='specialInterests' || type =='avoid' || type =='general' 
+            || type =='worries'">Add topic</span> 
+            <span *ngIf="type == 'medConditions'">Add medical condition</span> 
+            <span *ngIf="type == 'specialists'">Add specialist</span> 
+          </button>
+        </div>
+
+        
+
+      <div *ngIf="type == 'media'">
+          <form *ngIf="form" [formGroup]="form" >      
+            <ion-list>
+              <ion-item>
+                  <ion-label>Media Type</ion-label>
+                  <ion-select formControlName="mediaType">
+                    <ion-option value="Radio">Radio</ion-option>
+                    <ion-option value="TV">TV</ion-option>
+                    <ion-option value="Books">Books</ion-option>
+                    <ion-option value="Movies">Movies</ion-option>
+                    <ion-option value="Music">Music</ion-option>
+                    <ion-option value="Other">Other</ion-option>
+                  </ion-select>
+                </ion-item>
+              <ion-item>
+                <ion-label color="primary" stacked>Details</ion-label>
+                <ion-textarea rows="4" type="text" formControlName="mediaDetails"></ion-textarea>
+              </ion-item>             
+            </ion-list>
+          </form>
+          <br />
+          <button ion-button color="danger" block (click)="addItem(type)" [disabled]="!isReadyToSave">
+            Add preferred media</button>
+        </div>
+
+
+    
+
+  <button ion-button block (click)="cancel()">Cancel</button>
+
+  </ion-content>

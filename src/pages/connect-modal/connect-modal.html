@@ -1,0 +1,81 @@
+<!--
+  Generated template for the ConnectModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+        <button ion-button (click)="cancel()">
+            <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
+  <ion-title *ngIf="type == 'addCarer'">Register Carer</ion-title>
+  <ion-title *ngIf="type == 'advertiseCarer'">Advertise yourself</ion-title>
+</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div *ngIf="type == 'addCarer'">
+        <form [formGroup]="form" (submit)="register()" style="width:350px;">
+            <ion-list>
+        
+             
+              <ion-item>
+                <ion-label stacked>Username</ion-label>
+                <ion-input type="text" [(ngModel)]="account.Username" formControlName="username"></ion-input>
+              </ion-item>
+              
+        
+              <ion-item>
+                <ion-label stacked>Password</ion-label>
+                <ion-input type="password" [(ngModel)]="account.Password" formControlName="password"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label stacked>Display Name</ion-label>
+                  <ion-input type="text" [(ngModel)]="account.Name" formControlName="name"></ion-input>
+                </ion-item>
+        
+              <div padding>
+                
+                <button ion-button color="danger" block type="submit" [disabled]="!isReady">
+                    Register</button>
+                    <button ion-button block (click)="cancel()">Cancel</button>
+              </div>
+        
+            </ion-list>
+          </form>
+
+      </div>
+
+
+      <div *ngIf="type == 'advertiseCarer'">
+          <form [formGroup]="form" (submit)="advertise()" style="width:350px;">
+              <ion-list>
+          
+               
+                <ion-item>
+                  <ion-label stacked>Message</ion-label>
+                  <ion-textarea rows="4" type="text" [(ngModel)]="message" formControlName="message"></ion-textarea>
+                  
+                </ion-item>
+              </ion-list>
+              <p>From {{carer.Name}}</p>
+                <div padding>
+                  
+                  <button ion-button color="danger" block type="submit" [disabled]="!isReady">
+                      Advertise</button>
+                      <button ion-button block (click)="cancel()">Cancel</button>
+                </div>
+          
+              
+            </form>
+  
+        </div>
+
+</ion-content>

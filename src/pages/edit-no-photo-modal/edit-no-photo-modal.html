@@ -1,0 +1,41 @@
+<!--
+  Generated template for the EditNoPhotoModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!--
+  the EditModalPage is too clustered and too much shared code about image
+  hence createing a edit modal without images to have cleaner code
+-->
+<ion-header>
+
+  <ion-navbar>
+      <ion-buttons start>
+          <button ion-button (click)="cancel()">
+              <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-buttons>
+    <ion-title>Edit entry</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!--<div *ngIf="type == 'generalRoutine' || type == 'environment' || type == 'media'|| type=='otherActivities'">-->
+    <ion-item>
+      <ion-label *ngIf="type=='generalRoutine'" color="primary" stacked>{{details.Frequency}}</ion-label>
+      <ion-label *ngIf="type=='environment' || type=='otherActivities' || type =='starters'
+      || type =='specialInterests' || type =='avoid' || type =='general' || type =='worries'
+      || type == 'medConditions' || type == 'specialists'" 
+      color="primary" stacked>Details</ion-label>
+      <ion-label *ngIf="type=='media'" color="primary" stacked>{{details.Type}}</ion-label>
+        <ion-textarea type="text" [(ngModel)]="details.Details"></ion-textarea>      
+      </ion-item>
+  <!--</div>  -->
+  <br />
+  <button ion-button color="danger" full (click)="update(type)">Update</button>
+  <button ion-button full (click)="cancel()">Cancel</button>  
+
+</ion-content>

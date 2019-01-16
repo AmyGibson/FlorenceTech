@@ -1,0 +1,64 @@
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>       
+        <ion-title>General routines</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+        
+<h3>Daily </h3> 
+  
+<button ion-button icon-only class="addButton" (click)="addDaily()">
+    <ion-icon name="add"></ion-icon>
+</button>
+      
+<ion-list>
+    <ion-item *ngFor="let d of daily; let i =index" text-wrap>
+        <button ion-button outline style="float:right; vertical-align: top" 
+            (click)="openEditingModal(d.GRoutineID, d.Frequency)">Edit</button>
+            <button ion-button outline style="float:right; vertical-align: top" 
+            (click)="presentConfirm(d.GRoutineID, d.Frequency)">remove</button>
+        <p>{{d.Details}}</p>
+    </ion-item>
+</ion-list>
+<hr />
+<h3>Weekly</h3> 
+<button ion-button icon-only class="addButton" (click)="addWeekly()">
+        <ion-icon name="add"></ion-icon>
+    </button>
+<ion-list>
+    <ion-item *ngFor="let w of weekly; let i =index" text-wrap>
+        <button ion-button outline style="float:right; vertical-align: top" 
+            (click)="openEditingModal(w.GRoutineID, w.Frequency)">Edit</button>
+            <button ion-button outline style="float:right; vertical-align: top" 
+            (click)="presentConfirm(w.GRoutineID, w.Frequency)">remove</button>
+        <p>{{w.Details}}</p>
+    </ion-item>
+</ion-list>
+<hr />
+<h3>Monthly</h3> 
+<button ion-button icon-only class="addButton" (click)="addMonthly()">
+        <ion-icon name="add"></ion-icon>
+    </button>
+<ion-list>
+    <ion-item *ngFor="let m of monthly; let i =index" text-wrap>
+        <button ion-button outline style="float:right; vertical-align: top" 
+            (click)="openEditingModal(m.GRoutineID, m.Frequency)">Edit</button>
+            <button ion-button outline style="float:right; vertical-align: top" 
+            (click)="presentConfirm(m.GRoutineID, m.Frequency)">remove</button>
+        <p>{{m.Details}}</p>
+    </ion-item>
+</ion-list>
+<!--
+<p>Daily – Enjoys a walk in the backyard before 10am.</p>
+<p>Weekly – visits local café called Platter approx. 4 times per week for lunch.</p>
+<p>Monthly – visits council library to borrow “books on tape”</p>
+-->
+
+</ion-content>
